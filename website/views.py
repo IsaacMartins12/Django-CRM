@@ -27,7 +27,7 @@ def home(request) :
             return redirect('home')
     
     else :
-        print(messages.get_messages)
+        
         return render(request, 'home.html', {})
 
 def logout_user(request) :
