@@ -11,5 +11,5 @@ urlpatterns = [
     path('add_record/',views.add_record, name = 'add_record'),
     path('update_record/<int:pk>',views.update_record, name = 'update_record'),
     path('filter/',views.filter_registers, name = 'filter_registers'),
-    path('relatorio/', views.gerar_excel, name='gerar_excel'),
+    path('relatorio/<str:field>/<str:search>', views.gerar_excel, name='gerar_excel'),
 ]

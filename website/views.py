@@ -175,7 +175,7 @@ def filter_registers(request):
     
     return render(request, 'home.html', {})
 
-def gerar_excel(request):
+def gerar_excel(request, field, search):
    
     # Filtrar os dados desejados
     resultados = Records.objects.all()
@@ -183,7 +183,7 @@ def gerar_excel(request):
     # Criar o arquivo Excel
     workbook = Workbook()
     sheet = workbook.active
-
+    
     # Definir cabeçalhos
     sheet['A1'] = 'First Name'
     sheet['B1'] = 'Last Name'
@@ -192,11 +192,21 @@ def gerar_excel(request):
     sheet['E1'] = 'City'
     sheet['F1'] = 'State'
     sheet['G1'] = 'Zipcode'
-    sheet['I1'] = 'ID'
+    sheet['H1'] = 'ID'
+    
+    sheet.column_dimensions['A'].width = 15
+    sheet.column_dimensions['B'].width = 15
+    sheet.column_dimensions['C'].width = 15
+    sheet.column_dimensions['D'].width = 15
+    sheet.column_dimensions['E'].width = 15
+    sheet.column_dimensions['F'].width = 15
+    sheet.column_dimensions['G'].width = 15
+    sheet.column_dimensions['H'].width = 15
     
     # Preencher dados
     row_num = 2
     for resultado in resultados:
+      if field == 'first_name' and search in resultado.first_name or field == 'last_name' and search in resultado.last_name or field == 'address' and search in resultado.address : 
         sheet.cell(row=row_num, column=1, value=resultado.first_name)
         sheet.cell(row=row_num, column=2, value=resultado.last_name)
         sheet.cell(row=row_num, column=3, value=resultado.email)
