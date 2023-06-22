@@ -49,3 +49,9 @@ class AddRecordForm(forms.ModelForm):
 	class Meta:
 		model = Records
 		exclude = ("user",)
+  
+  
+class form_filter(forms.Form):
+    search = forms.CharField(label='search', max_length=40)
+    field = forms.CharField(label='field', max_length=40)
+    

@@ -4,10 +4,10 @@
 
 
   {% if user.is_authenticated %}
-  
 
+<div class="table-responsive">
   <table class="table table-striped table-hover table-bordered">
-    <thead class="table-dark">
+    <thead class="table-dark ">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
@@ -41,6 +41,33 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+  <br/><br/>
+  
+  <form method="POST" action="{% url 'filter_registers'%}">
+    {% csrf_token %}
+    <div class="row">
+    <div class="col-sm-6">
+    <legend>ÁREA DE PESQUISA</legend>
+    <div class="mb-3">
+      <label class="form-label">Search</label>
+      <input type="text" class="form-control" placeholder="Digite o que você procura" name="search" id="search">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Fields</label>
+      <select id="field" name="field" class="form-select">
+        <option value="first_name">First Name</option>
+        <option value="last_name">Last Name</option>
+        <option value="address">Address</option>
+      </select>
+    </div>
+  </div>
+</div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
 
   
   {% else %}

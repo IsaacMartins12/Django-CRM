@@ -3,7 +3,7 @@
 {% block content %}
 <div class="col-md-6 offset-md-3">
 <div class="card">
-    <div class="card-header">
+    <div class="card-header" id="principal">
         {{customer_record.first_name }}
         {{customer_record.last_name }}
     </div>
@@ -49,6 +49,6 @@
 
 <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
 
-<a href="{% url 'update_record' customer_record.id%}" class="btn btn-secondary">Update Record</a>
+<a href="{% url 'update_record' customer_record.id%}" class="btn btn-secondary" id="button_update">Update Record</a>
 
 {% endblock %}
